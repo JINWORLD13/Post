@@ -2,11 +2,11 @@ import { useRef, useState } from "react";
 import styles from "./Auth.module.scss";
 import { Navigate } from "react-router-dom";
 import { loginApi } from "../../api/auth/authApi";
-import Card from "../../components/ui/Card/Card";
-import Input from "../../components/ui/Input/Input";
-import FormControl from "../../components/ui/FormControl/FormControl";
-import Form from "../../components/ui/Form/Form";
-import Button from "../../components/ui/Button/Button";
+import Card from "../../components/ui/card/Card";
+import LoginInput from "../../components/ui/input/LoginInput";
+import FormControl from "../../components/ui/formControl/FormControl";
+import Form from "../../components/ui/form/Form";
+import Button from "../../components/ui/button/Button";
 import useAuth from "../../hooks/useAuth";
 
 interface Auth {
@@ -84,7 +84,7 @@ const Auth = () => {
       <Card className={`${styles["login-container"]}`}>
         <Form onSubmit={onSubmit}>
           <FormControl>
-            <Input
+            <LoginInput
               type="email"
               name="email"
               onChange={handleInputChange}
@@ -97,7 +97,7 @@ const Auth = () => {
             />
           </FormControl>
           <FormControl>
-            <Input
+            <LoginInput
               type="password"
               name="password"
               onChange={handleInputChange}

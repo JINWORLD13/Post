@@ -1,13 +1,20 @@
-import Button from "../../components/ui/Button/Button";
+import PostFilters from "../../components/post/PostFilters";
+import Button from "../../components/ui/button/Button";
 import styles from "./Post.module.scss";
 
 const Post = () => {
   return (
     <div className={`${styles.container}`}>
-      <div>Post</div>
-      <div className={`${styles['table-wrapper']}`}>
-        <div className={`${styles['button-box']}`}><Button>글작성</Button></div>
-        <div className={`${styles['table-box']}`}>
+      {"제목"}
+      <div>
+        <h1>Post</h1>
+      </div>
+      <div className={`${styles["post-wrapper"]}`}>
+        <PostFilters />
+        <div className={`${styles["button-box"]}`}>
+          <Button>글작성</Button>
+        </div>
+        <div className={`${styles["post-box"]}`}>
           <table className={`${styles.table}`}>
             <thead>
               <tr>
