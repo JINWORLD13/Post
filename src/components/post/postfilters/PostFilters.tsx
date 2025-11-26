@@ -1,7 +1,7 @@
 import React from "react";
-import Input from "../ui/Input/Input";
-import Select from "../ui/Select/Select";
-import { Category, SortField, SortOrder } from "../../types/post";
+import Input from "../../ui/Input/Input";
+import Select from "../../ui/Select/Select";
+import { Category, SortField, SortOrder } from "../../../types/post";
 import styles from "./PostFilters.module.scss";
 
 interface PostFiltersProps {
@@ -26,20 +26,20 @@ const PostFilters: React.FC<PostFiltersProps> = ({
   onCategoryFilterChange,
 }) => {
   const sortFieldOptions = [
-    { value: "title", label: "제목" },
-    { value: "createdAt", label: "작성일" },
+    { value: "title", label: "Title" },
+    { value: "createdAt", label: "Time" },
   ];
 
   const sortOrderOptions = [
-    { value: "asc", label: "오름차순" },
-    { value: "desc", label: "내림차순" },
+    { value: "asc", label: "Asc" },
+    { value: "desc", label: "Desc" },
   ];
 
   const categoryOptions = [
-    { value: "all", label: "전체" },
-    { value: Category.NOTICE, label: "공지사항" },
+    { value: "all", label: "All" },
+    { value: Category.NOTICE, label: "Notice" },
     { value: Category.QNA, label: "Q&A" },
-    { value: Category.FREE, label: "자유게시판" },
+    { value: Category.FREE, label: "Free" },
   ];
 
   return (
@@ -51,8 +51,8 @@ const PostFilters: React.FC<PostFiltersProps> = ({
           type="text"
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          placeholder="제목 또는 본문 검색..."
-          label="검색"
+          placeholder="Title or Content Search..."
+          label="Search"
         />
       </div>
 
@@ -66,7 +66,7 @@ const PostFilters: React.FC<PostFiltersProps> = ({
               e.target.value === "all" ? "all" : (e.target.value as Category)
             )
           }
-          label="카테고리"
+          label="Category"
           options={categoryOptions}
         />
       </div>
@@ -77,7 +77,7 @@ const PostFilters: React.FC<PostFiltersProps> = ({
           name="sortField"
           value={sortField}
           onChange={(e) => onSortFieldChange(e.target.value as SortField)}
-          label="정렬 기준"
+          label="Sort Field"
           options={sortFieldOptions}
         />
       </div>
@@ -88,7 +88,7 @@ const PostFilters: React.FC<PostFiltersProps> = ({
           name="sortOrder"
           value={sortOrder}
           onChange={(e) => onSortOrderChange(e.target.value as SortOrder)}
-          label="정렬 순서"
+          label="Sort Order"
           options={sortOrderOptions}
         />
       </div>
@@ -97,4 +97,3 @@ const PostFilters: React.FC<PostFiltersProps> = ({
 };
 
 export default PostFilters;
-
