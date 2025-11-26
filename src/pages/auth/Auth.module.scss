@@ -6,7 +6,7 @@
   padding: 1rem;
   padding-top: 4rem;
   padding-bottom: 4rem;
-};
+}
 
 .container {
   width: 100%;
@@ -43,18 +43,11 @@
   border-color: #08a045;
 }
 
-.login-container .button-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-  text-align: center;
-  margin-bottom: 30px;
+.login-button-box {
+  width: 100%;
+  @include All.flex-center();
 }
-.button-box .btn {
-  padding: 10px;
-}
-
+  
 .gap {
   display: inline-block;
   width: 30px;

@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.scss";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar: React.FC = () => {
+  const { isAuthenticated } = useAuth();
   return (
     <div className={`${styles.navbar}`}>
       <div className={`${styles["logo"]}`}>Logo</div>
@@ -13,12 +15,20 @@ const Navbar: React.FC = () => {
         <Link to="/post" className={styles.link}>
           Post
         </Link>
-        <Link to="/chart" className={styles.link}>
-          Chart
-        </Link>
-        <Link to="/login" className={styles.link}>
-          Login
-        </Link>
+        {isAuthenticated && (
+          <Link to="/chart" className={styles.link}>
+            Chart
+          </Link>
+        )}
+        {isAuthenticated ? (
+          <Link to="/logout" className={styles.link}>
+            Logout
+          </Link>
+        ) : (
+          <Link to="/login" className={styles.link}>
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

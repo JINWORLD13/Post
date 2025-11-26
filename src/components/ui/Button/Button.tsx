@@ -6,13 +6,15 @@ const Button = (
     className?: string;
     type?: "button" | "submit" | "reset";
     onClick?: () => void;
+    disabled?: boolean;
   }>
 ) => {
   return (
     <button
       className={`${styles.button} ${props.className}`}
-      type={props.type || "button"}
+      type={props.type}
       onClick={props.onClick}
+      disabled={props.disabled || false}
     >
       {props.children}
     </button>

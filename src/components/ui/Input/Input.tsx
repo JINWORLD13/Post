@@ -7,6 +7,8 @@ const Input = (
     id?: string;
     name?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
     value?: string;
     placeholder?: string;
     label?: string;
@@ -21,6 +23,8 @@ const Input = (
         name={props?.name}
         className={`${props?.className}`}
         onChange={props?.onChange}
+        onFocus={props?.onFocus}
+        onBlur={props?.onBlur}
         value={props?.value}
         placeholder={props?.placeholder}
         required={props?.required}
