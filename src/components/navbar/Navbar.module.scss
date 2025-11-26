@@ -1,0 +1,28 @@
+@use "../../styles/scss/All.module.scss" as All;
+
+@mixin flex-gap($gap: 1){
+    flex-grow: $gap;
+}
+
+.navbar{
+    width: 100vw;
+    @include All.flex-center();
+
+    border-bottom: 1px solid gold;
+}
+
+.flex-gap{
+    @include flex-gap(1);
+}
+
+.logo {
+    margin-left: 1rem;
+    padding: 0.5rem;
+    text-decoration: none;
+}
+
+.link {
+    margin-right: 1rem;
+    padding: 0.5rem;
+    text-decoration: none;
+}

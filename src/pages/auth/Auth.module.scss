@@ -1,0 +1,61 @@
+@use "../../styles/scss/All.module.scss" as All;
+
+%login-container {
+  width: 100%;
+  max-width: 40rem;
+  padding: 1rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+};
+
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  @include All.flex-center();
+}
+
+.login-container {
+  @include All.absolute-center();
+  @extend %login-container;
+  color: #08a045;
+
+  & h2 {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+.login-container label {
+  display: block;
+  font-weight: bold;
+}
+
+.login-container input {
+  display: block;
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 0.15rem;
+}
+
+.login-container input:focus {
+  outline: none;
+  border-color: #08a045;
+}
+
+.login-container .button-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.button-box .btn {
+  padding: 10px;
+}
+
+.gap {
+  display: inline-block;
+  width: 30px;
+}
