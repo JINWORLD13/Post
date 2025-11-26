@@ -1,0 +1,61 @@
+.container {
+  width: 65%;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 7px;
+}
+
+.container .input-data {
+  height: 30px;
+  width: 100%;
+  position: relative;
+}
+.container .input-data div {
+  font-size: 14px;
+  text-align: end;
+  color: red;
+}
+.container .input-data input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 1.1rem;
+  border-bottom: 2px solid silver;
+  margin-bottom: 5px;
+}
+
+.input-data input:focus ~ label, /** ~는 형제 선택자임(병렬관계에서의 label에 적용)*/
+  .input-data input:valid ~ label {
+  transform: translateY(-30px);
+  font-size: 1rem;
+  color: #06770a;
+}
+
+.container .input-data label {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  color: grey;
+  pointer-events: none; /** 마우스와 관련 이벤트는 전부 무효 */
+  transition: all 0.3s ease;
+}
+
+.container .input-data .underline {
+  position: absolute;
+  bottom: 0px;
+  height: 2px;
+  width: 100%;
+}
+.input-data .underline::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.input-data input:focus ~ .underline:before,
+.input-data input:valid ~ .underline:before {
+  transform: scaleX(1);
+}
