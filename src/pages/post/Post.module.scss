@@ -6,11 +6,11 @@
   @include All.flex-center(column);
 }
 
-.table-wrapper {
+.post-wrapper {
     width: 90%;
 }
 
-.table-box {
+.post-box {
     width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(255, 255, 255, 0.1);
@@ -49,6 +49,7 @@
     td { // 테이블 데이터 셀(실제 데이터에 사용)
       padding: 0.7rem;
       border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
     }
   }
 }

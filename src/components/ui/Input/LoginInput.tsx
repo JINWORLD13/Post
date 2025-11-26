@@ -12,7 +12,7 @@ interface InputProps {
   required?: boolean;
 }
 
-const Input = ({
+const LoginInput = ({
   className,
   type,
   id,
@@ -24,10 +24,10 @@ const Input = ({
   placeholder,
   label,
   required,
+  ...props
 }: InputProps) => {
   return (
     <>
-      {label && <label htmlFor={id || ""}>{label}</label>}
       <input
         type={type || ""}
         id={id || ""}
@@ -37,11 +37,14 @@ const Input = ({
         onFocus={onFocus}
         onBlur={onBlur}
         value={value || ""}
-        placeholder={placeholder}
+        placeholder={placeholder || ""}
         required={required || false}
       />
+
+      <div className={"underline"} />
+      {label && <label htmlFor={id}>{label}</label>}
     </>
   );
 };
 
-export default Input;
+export default LoginInput;
