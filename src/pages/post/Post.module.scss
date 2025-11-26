@@ -3,16 +3,33 @@
 .container {
   width: 100%;
   height: 100%;
-  @include All.flex-center();
+  @include All.flex-center(column);
+}
+
+.table-wrapper {
+    width: 90%;
+}
+
+.table-box {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.button-box {
+    width: 100%;
+    text-align: right;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .table {
-  width: 90%;
-  border: 1px solid white;
-  border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse; // 셀 테두리 합침(원래 띄어져 있음)
 
   thead {
     th {
+      // 헤더 셀(열 제목(컬럼명)에 사용)
       padding: 0.7rem;
       border: 1px solid rgba(255, 255, 255, 0.2);
       font-weight: bold;
@@ -29,7 +46,7 @@
       }
     }
 
-    td {
+    td { // 테이블 데이터 셀(실제 데이터에 사용)
       padding: 0.7rem;
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
