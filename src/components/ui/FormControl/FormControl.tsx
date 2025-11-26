@@ -6,7 +6,7 @@ const FormControl = (props: React.PropsWithChildren<{ className?: string }>) => 
     <div className={`${styles.container}`}>
       <div className={`${styles["input-data"]}`}>{props.children}</div>
     </div>
-  );
+  );                                                
 };
 
 export default FormControl;
