@@ -1,13 +1,56 @@
 
+.post-table-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.column-controls {
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+
+  h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}
+
+.column-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.column-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    cursor: pointer;
+  }
+
+  span {
+    user-select: none;
+  }
+}
+
 .post-table-box {
-    width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .table {
   width: 100%;
   border-collapse: collapse; // 셀 테두리 합침(원래 띄어져 있음)
+  min-width: 100%;
 
   thead {
     th {
@@ -16,6 +59,8 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       font-weight: bold;
       background-color: rgba(255, 255, 255, 0.1);
+      position: relative;
+      user-select: none;
     }
   }
 
@@ -32,6 +77,58 @@
       padding: 0.7rem;
       border: 1px solid rgba(255, 255, 255, 0.2);
       text-align: center;
+      word-break: break-word;
     }
+  }
+}
+
+.resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  cursor: col-resize;
+  background-color: transparent;
+  z-index: 1;
+
+  &:hover {
+    background-color: rgba(8, 160, 69, 0.5);
+  }
+
+  &:active {
+    background-color: rgba(8, 160, 69, 0.8);
+  }
+}
+
+.empty-cell {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-button {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.delete-button {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  background: #dc3545;
+  border-color: #dc3545;
+
+  &:hover,
+  &:active {
+    background: white;
+    border-color: #dc3545;
+    color: #dc3545;
   }
 }

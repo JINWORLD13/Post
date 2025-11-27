@@ -1,33 +1,60 @@
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.scss";
 import useAuth from "../../hooks/useAuth";
 
 const Navbar: React.FC = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    logout();
+    navigate("/");
+  };
   return (
     <div className={`${styles.navbar}`}>
       <div className={`${styles["logo"]}`}>Logo</div>
       <div className={`${styles["flex-gap"]}`} />
       <div className={`${styles["navbar-links"]}`}>
-        <Link to="/" className={styles.link}>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `${styles.link} ${isActive ? styles.active : ""}`
+          }
+        >
           Home
-        </Link>
-        <Link to="/post" className={styles.link}>
+        </NavLink>
+        <NavLink
+          to="/post"
+          className={({ isActive }) =>
+            `${styles.link} ${isActive ? styles.active : ""}`
+          }
+        >
           Post
-        </Link>
+        </NavLink>
         {isAuthenticated && (
-          <Link to="/chart" className={styles.link}>
+          <NavLink
+            to="/chart"
+            className={({ isActive }) =>
+              `${styles.link} ${isActive ? styles.active : ""}`
+            }
+          >
             Chart
-          </Link>
+          </NavLink>
         )}
         {isAuthenticated ? (
-          <Link to="/logout" className={styles.link}>
+          <a href="#" onClick={handleLogout} className={styles.link}>
             Logout
-          </Link>
+          </a>
         ) : (
-          <Link to="/login" className={styles.link}>
+          <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              `${styles.link} ${isActive ? styles.active : ""}`
+            }
+          >
             Login
-          </Link>
+          </NavLink>
         )}
       </div>
     </div>

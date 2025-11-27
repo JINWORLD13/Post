@@ -1,0 +1,22 @@
+.container {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  h1 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #333;
+  }
+}
+
+.chartsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
