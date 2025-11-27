@@ -7,11 +7,11 @@ import {
 } from "../../../types/post";
 import Form from "../../ui/form/Form";
 import FormControl from "../../ui/formControl/FormControl";
-import Input from "../../ui/Input/Input";
+import Input from "../../ui/input/Input";
 import Textarea from "../../ui/textarea/TextArea";
 import styles from "./PostForm.module.scss";
 import Button from "../../ui/button/Button";
-import Select from "../../ui/Select/Select";
+import Select from "../../ui/select/Select";
 import useAuth from "../../../hooks/useAuth";
 
 interface PostFormProps {

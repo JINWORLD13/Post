@@ -25,8 +25,7 @@ const Auth = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState<boolean>(false);
   const [isEmailFocused, setIsEmailFocused] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const { login, isAuthenticated } = useAuth();
+  const { login, logout, isAuthenticated } = useAuth();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -52,7 +51,6 @@ const Auth = () => {
     try {
       if (isLoading) return;
       setIsLoading(true);
-      setError(null);
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
@@ -64,24 +62,12 @@ const Auth = () => {
         password: authForm.password,
         signal: abortController.signal,
       });
-      if (result?.token && result?.user) {
-        login(result.token, result.user);
-      } else {
-        setError("로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.");
-      }
+      login(result?.token);
+      // 로그인 성공 후 홈 화면으로 이동하면서 새로고침
+      window.location.href = "/";
       return result;
-    } catch (error: unknown) {
-      let errorMessage =
-        "로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.";
-      if (error && typeof error === "object" && "response" in error) {
-        const axiosError = error as {
-          response?: { data?: { message?: string } };
-        };
-        errorMessage = axiosError.response?.data?.message || errorMessage;
-      } else if (error instanceof Error) {
-        errorMessage = error.message || errorMessage;
-      }
-      setError(errorMessage);
+    } catch (error) {
+      logout();
       return null;
     } finally {
       setIsLoading(false);
@@ -126,10 +112,9 @@ const Auth = () => {
               required
             />
           </FormControl>
-          {error && <div className={`${styles["error-message"]}`}>{error}</div>}
           <div className={`${styles["login-button-box"]}`}>
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? "로그인 중..." : "Login"}
+              Login
             </Button>
           </div>
         </Form>

@@ -2,63 +2,96 @@
 
 %login-container {
   width: 100%;
-  max-width: 40rem;
-  padding: 1rem;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  max-width: 450px;
+  padding: 3rem;
 }
 
 .container {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   position: relative;
   @include All.flex-center();
+  padding: 2rem;
 }
 
 .login-container {
-  @include All.absolute-center();
   @extend %login-container;
-  color: #08a045;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: fadeInUp 0.6s ease-out;
 
   & h2 {
     font-size: 2rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
   }
 }
 
 .login-container label {
   display: block;
-  font-weight: bold;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
 }
 
 .login-container input {
   display: block;
   width: 100%;
-  border: 1px solid #ccc;
-  padding: 0.15rem;
-}
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.8);
+  color: #4a5568;
 
-.login-container input:focus {
-  outline: none;
-  border-color: #08a045;
+  &:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    background: #ffffff;
+  }
 }
 
 .error-message {
-  color: #ff4444;
+  color: #e53e3e;
   font-size: 0.9rem;
   margin-bottom: 1rem;
   text-align: center;
-  padding: 0.5rem;
-  background-color: #ffe6e6;
-  border-radius: 4px;
+  padding: 0.75rem;
+  background: rgba(229, 62, 62, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(229, 62, 62, 0.2);
+  font-weight: 500;
 }
 
 .login-button-box {
   width: 100%;
   @include All.flex-center();
+  margin-top: 1.5rem;
 }
   
 .gap {
   display: inline-block;
   width: 30px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
