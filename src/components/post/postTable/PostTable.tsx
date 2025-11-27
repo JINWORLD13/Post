@@ -18,7 +18,7 @@ interface ColumnConfig {
 }
 
 const PostTable = ({ posts, onEdit, onDelete }: PostTableProps) => {
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const [columns, setColumns] = useState<ColumnConfig[]>([
     { key: "no", label: "No.", width: 80, visible: true },
     { key: "title", label: "Title", width: 200, visible: true },
@@ -170,20 +170,22 @@ const PostTable = ({ posts, onEdit, onDelete }: PostTableProps) => {
                   )}
                   {columns.find((col) => col.key === "actions")?.visible && (
                     <td>
-                      <div className={styles["action-buttons"]}>
-                        <Button
-                          className={styles["edit-button"]}
-                          onClick={() => onEdit(post)}
-                        >
-                          수정
-                        </Button>
-                        <Button
-                          className={styles["delete-button"]}
-                          onClick={() => onDelete(post.id)}
-                        >
-                          삭제
-                        </Button>
-                      </div>
+                      {isAuthenticated && (
+                        <div className={styles["action-buttons"]}>
+                          <Button
+                            className={styles["edit-button"]}
+                            onClick={() => onEdit(post)}
+                          >
+                            수정
+                          </Button>
+                          <Button
+                            className={styles["delete-button"]}
+                            onClick={() => onDelete(post.id)}
+                          >
+                            삭제
+                          </Button>
+                        </div>
+                      )}
                     </td>
                   )}
                 </tr>

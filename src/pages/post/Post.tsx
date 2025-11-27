@@ -6,7 +6,7 @@ import Modal from "../../components/ui/modal/Modal";
 import { useRef, useState, useEffect, useCallback } from "react";
 import {
   Category,
-  type Post,
+  type Post as PostType,
   type SortField,
   type SortOrder,
 } from "../../types/post";
@@ -20,7 +20,7 @@ import {
 import useAuth from "../../hooks/useAuth";
 
 const Post = () => {
-  const { userId } = useAuth();
+  const { userId, isAuthenticated } = useAuth();
   const abortControllerRef = useRef<AbortController | null>(null);
   const [open, setOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -28,8 +28,8 @@ const Post = () => {
   const [sortField, setSortField] = useState<SortField>("createdAt");
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
   const [categoryFilter, setCategoryFilter] = useState<Category>(Category.ALL);
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [editingPost, setEditingPost] = useState<Post | null>(null);
+  const [posts, setPosts] = useState<PostType[]>([]);
+  const [editingPost, setEditingPost] = useState<PostType | null>(null);
 
   const handleSearchQueryChange = (query: string) => {
     setSearchQuery(query);
@@ -61,7 +61,7 @@ const Post = () => {
       const result = await getPostsApi(params);
 
       // API 응답 구조: { items: [...], nextCursor: "...", prevCursor: "..." }
-      let allPosts: Post[] = [];
+      let allPosts: PostType[] = [];
       if (result?.items && Array.isArray(result.items)) {
         allPosts = result.items;
       } else if (result && Array.isArray(result)) {
@@ -83,7 +83,7 @@ const Post = () => {
     fetchPosts();
   }, [fetchPosts]);
 
-  const handleSubmit = async (post: Post) => {
+  const handleSubmit = async (post: PostType) => {
     try {
       if (isLoading) return;
       setIsLoading(true);
@@ -135,7 +135,7 @@ const Post = () => {
     }
   };
 
-  const handleEdit = (post: Post) => {
+  const handleEdit = (post: PostType) => {
     setEditingPost(post);
     setOpen(true);
   };
@@ -179,9 +179,11 @@ const Post = () => {
           onCategoryFilterChange={handleCategoryFilterChange}
         />
         {/* 글작성 버튼 */}
-        <div className={`${styles["button-box"]}`}>
-          <Button onClick={handleOpen}>글작성</Button>
-        </div>
+        {isAuthenticated && (
+          <div className={`${styles["button-box"]}`}>
+            <Button onClick={handleOpen}>글작성</Button>
+          </div>
+        )}
         {/* 게시글 테이블 */}
         <PostTable posts={posts} onEdit={handleEdit} onDelete={handleDelete} />
         {/* 글작성/수정 */}
