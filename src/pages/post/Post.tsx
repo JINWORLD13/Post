@@ -20,7 +20,7 @@ import {
 import useAuth from "../../hooks/useAuth";
 
 const Post = () => {
-  const { userId } = useAuth();
+  const { userId, isAuthenticated } = useAuth();
   const abortControllerRef = useRef<AbortController | null>(null);
   const [open, setOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -179,9 +179,11 @@ const Post = () => {
           onCategoryFilterChange={handleCategoryFilterChange}
         />
         {/* 글작성 버튼 */}
-        <div className={`${styles["button-box"]}`}>
-          <Button onClick={handleOpen}>글작성</Button>
-        </div>
+        {isAuthenticated && (
+          <div className={`${styles["button-box"]}`}>
+            <Button onClick={handleOpen}>글작성</Button>
+          </div>
+        )}
         {/* 게시글 테이블 */}
         <PostTable posts={posts} onEdit={handleEdit} onDelete={handleDelete} />
         {/* 글작성/수정 */}

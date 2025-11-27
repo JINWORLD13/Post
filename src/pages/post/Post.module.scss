@@ -2,15 +2,30 @@
 
 .container {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   @include All.flex-center(column);
+  padding: 2rem;
 }
 
 .post-wrapper {
-    width: 90%;
+  width: 100%;
+  max-width: 1400px;
 }
 
 .button-box {
-    width: 100%;
-    text-align: right;
+  width: 100%;
+  text-align: right;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.9) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1rem 0;
 }

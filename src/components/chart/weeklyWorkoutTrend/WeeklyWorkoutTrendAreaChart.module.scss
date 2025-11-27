@@ -1,14 +1,25 @@
 .container {
-  padding: 20px;
-  margin-bottom: 40px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  background: white;
+  padding: 2rem;
+  margin-bottom: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
 
   h2 {
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
     font-size: 1.5rem;
-    color: #333;
+    font-weight: 600;
+    color: #4a5568;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(102, 126, 234, 0.2);
   }
 }
 
@@ -21,9 +32,10 @@
 .content {
   display: flex;
   align-items: center;
+  transition: all 0.2s ease;
 
   &.hidden {
-    opacity: 0.5;
+    opacity: 0.4;
   }
 }
 
@@ -33,19 +45,20 @@
 }
 
 .box {
-  width: 14px;
-  height: 14px;
-  border-radius: 2px;
-  border: 1px solid #ccc;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
   pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .input {
   position: absolute;
   top: 0;
   left: 0;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border: none;
   cursor: pointer;
   opacity: 0;
@@ -53,14 +66,22 @@
 }
 
 .text {
-  color: #000;
+  color: #4a5568;
   cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #667eea;
+  }
 }
 
 .legend {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 20px;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(102, 126, 234, 0.1);
 }

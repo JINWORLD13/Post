@@ -1,6 +1,6 @@
 import React from "react";
-import Input from "../../ui/Input/Input";
-import Select from "../../ui/Select/Select";
+import Input from "../../ui/input/Input";
+import Select from "../../ui/select/Select";
 import { Category, type SortField, type SortOrder } from "../../../types/post";
 import styles from "./PostFilters.module.scss";
 
