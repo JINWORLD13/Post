@@ -62,11 +62,16 @@ const Auth = () => {
         password: authForm.password,
         signal: abortController.signal,
       });
-      login(result?.token);
+      // API 응답에서 user 정보가 있으면 사용하고, 없으면 email로부터 생성
+      const user = result?.user || {
+        id: result?.userId || "",
+        email: authForm.email,
+      };
+      login(result?.token, user);
       // 로그인 성공 후 홈 화면으로 이동하면서 새로고침
       window.location.href = "/";
       return result;
-    } catch (error) {
+    } catch {
       logout();
       return null;
     } finally {
