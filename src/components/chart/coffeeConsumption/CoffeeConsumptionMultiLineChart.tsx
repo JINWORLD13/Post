@@ -58,64 +58,44 @@ const LegendItem = ({
   const currentColor = teamColors[entry.team] || entry.color;
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-      <div style={{ display: "flex", alignItems: "center", opacity: isHidden ? 0.5 : 1 }}>
-        {/* 색상 표시 박스 */}
-        <div style={{ position: "relative", marginRight: "8px" }}>
+    <div className={styles.item}>
+      <div
+        className={`${styles.content} ${isHidden ? styles.hidden : ""}`}
+      >
+        <div className={styles.wrapper}>
           <div
+            className={`${styles.box} ${entry.lineType === "dashed" ? styles.square : ""}`}
             style={{
-              width: "14px",
-              height: "14px",
               backgroundColor: currentColor,
-              // 점선 라인은 사각형, 실선 라인은 원형으로 표시
-              borderRadius: entry.lineType === "dashed" ? "0" : "50%",
-              border: "1px solid #ccc",
-              pointerEvents: "none",
             }}
           />
-          {/* 색상 변경을 위한 숨겨진 색상 선택기 */}
           <input
             ref={colorPickerRef}
             type="color"
             value={currentColor}
             onChange={(e) => {
-              // 팀의 색상을 변경하면 같은 팀의 모든 라인이 같은 색상으로 변경됨
               onColorChange(entry.team, e.target.value);
             }}
             onClick={(e) => e.stopPropagation()}
-            style={{
-              position: "absolute",
-              top: "0",
-              left: "0",
-              width: "14px",
-              height: "14px",
-              border: "none",
-              cursor: "pointer",
-              opacity: 0, // 투명하게 만들어 클릭 가능하게 함
-              padding: 0,
-            }}
+            className={styles.input}
           />
         </div>
         
-        {/* 점선 라인인 경우 점선 표시 */}
         {entry.lineType === "dashed" && (
           <div
+            className={styles.dashedLine}
             style={{
-              width: "14px",
-              height: "2px",
               borderTop: `2px dashed ${currentColor}`,
-              marginRight: "4px",
             }}
           />
         )}
         
-        {/* 범례 항목 이름 (클릭하면 보이기/숨기기) */}
         <span
           onClick={(e) => {
             e.stopPropagation();
             onLegendClick(entry.value);
           }}
-          style={{ color: "#000", cursor: "pointer" }}
+          className={styles.text}
         >
           {entry.value}
         </span>
@@ -144,15 +124,7 @@ const CustomLegend = ({
   if (!payload) return null;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        flexWrap: "wrap",
-        gap: "16px",
-        marginTop: "20px",
-      }}
-    >
+    <div className={styles.legend}>
       {payload.map((entry, index) => {
         const isHidden = hiddenItems.includes(entry.value);
         return (
@@ -214,23 +186,21 @@ const CustomTooltip = ({
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "white",
-        border: "1px solid #ccc",
-        borderRadius: "4px",
-        padding: "10px",
-        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-      }}
-    >
-      <p style={{ margin: "0 0 8px 0", fontWeight: "bold" }}>
+    <div className={styles.tooltip}>
+      <p className={styles.tooltipTitle}>
         커피 잔수: {coffeeCups}잔
       </p>
-      <p style={{ margin: "0 0 8px 0", fontWeight: "bold" }}>팀: {teamName}</p>
-      <p style={{ margin: "4px 0", color: payload[0].stroke }}>
+      <p className={styles.tooltipTitle}>팀: {teamName}</p>
+      <p
+        className={styles.tooltipText}
+        style={{ color: payload[0].stroke }}
+      >
         버그 수: {teamData.bugs}
       </p>
-      <p style={{ margin: "4px 0", color: payload[0].stroke }}>
+      <p
+        className={styles.tooltipText}
+        style={{ color: payload[0].stroke }}
+      >
         생산성: {teamData.productivity}
       </p>
     </div>
@@ -346,7 +316,7 @@ const CoffeeConsumptionMultiLineChart = () => {
         } else {
           setData([]);
         }
-      } catch (error) {
+      } catch {
         setData([]);
       }
     };

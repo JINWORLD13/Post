@@ -29,23 +29,13 @@ const LegendItem = ({
   const colorPickerRef = useRef<HTMLInputElement | null>(null);
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          opacity: isHidden ? 0.5 : 1,
-        }}
-      >
-        <div style={{ position: "relative", marginRight: "8px" }}>
+    <div className={styles.item}>
+      <div className={`${styles.content} ${isHidden ? styles.hidden : ""}`}>
+        <div className={styles.wrapper}>
           <div
+            className={styles.box}
             style={{
-              width: "14px",
-              height: "14px",
               backgroundColor: colors[entry.value] || entry.color,
-              borderRadius: "2px",
-              border: "1px solid #ccc",
-              pointerEvents: "none",
             }}
           />
           <input
@@ -56,17 +46,7 @@ const LegendItem = ({
               onColorChange(entry.value, e.target.value);
             }}
             onClick={(e) => e.stopPropagation()}
-            style={{
-              position: "absolute",
-              top: "0",
-              left: "0",
-              width: "14px",
-              height: "14px",
-              border: "none",
-              cursor: "pointer",
-              opacity: 0,
-              padding: 0,
-            }}
+            className={styles.input}
           />
         </div>
         <span
@@ -74,7 +54,7 @@ const LegendItem = ({
             e.stopPropagation();
             onLegendClick(entry.value);
           }}
-          style={{ color: "#000", cursor: "pointer" }}
+          className={styles.text}
         >
           {entry.value}
         </span>
@@ -100,15 +80,7 @@ const CustomLegend = ({
   if (!payload) return null;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        flexWrap: "wrap",
-        gap: "16px",
-        marginTop: "20px",
-      }}
-    >
+    <div className={styles.legend}>
       {payload.map((entry, index) => {
         const isHidden = hiddenItems.includes(entry.value);
         return (
@@ -154,7 +126,7 @@ const WeeklyMoodTrendStackedBarChart = () => {
         // API 응답이 배열인지 확인
         const dataArray = Array.isArray(response) ? response : [];
         setData(dataArray);
-      } catch (error) {
+      } catch {
         setData([]);
       }
     };

@@ -12,3 +12,83 @@
   }
 }
 
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+
+  &.hidden {
+    opacity: 0.5;
+  }
+}
+
+.wrapper {
+  position: relative;
+  margin-right: 8px;
+}
+
+.box {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  pointer-events: none;
+
+  &.square {
+    border-radius: 0;
+  }
+}
+
+.input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  padding: 0;
+}
+
+.dashedLine {
+  width: 14px;
+  height: 2px;
+  margin-right: 4px;
+}
+
+.text {
+  color: #000;
+  cursor: pointer;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.tooltip {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tooltipTitle {
+  margin: 0 0 8px 0;
+  font-weight: bold;
+}
+
+.tooltipText {
+  margin: 4px 0;
+}
+
