@@ -69,3 +69,51 @@
   }
 }
 
+.item {
+  display: flex;
+  align-items: center;
+  opacity: 1;
+
+  &.hidden {
+    opacity: 0.5;
+  }
+}
+
+.wrapper {
+  position: relative;
+  margin-right: 8px;
+}
+
+.box {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  pointer-events: none;
+}
+
+.input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  padding: 0;
+}
+
+.text {
+  color: #000;
+  cursor: pointer;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+

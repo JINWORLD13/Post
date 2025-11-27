@@ -23,35 +23,19 @@ const CustomLegend = ({
   if (!payload) return null;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        flexWrap: "wrap",
-        gap: "16px",
-        marginTop: "20px",
-      }}
-    >
+    <div className={styles.legend}>
       {payload.map((entry, index) => {
         const isHidden = hiddenItems.includes(entry.value);
         return (
           <div
             key={`legend-${index}`}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              opacity: isHidden ? 0.5 : 1,
-            }}
+            className={`${styles.item} ${isHidden ? styles.hidden : ""}`}
           >
-            <div style={{ position: "relative", marginRight: "8px" }}>
+            <div className={styles.wrapper}>
               <div
+                className={styles.box}
                 style={{
-                  width: "14px",
-                  height: "14px",
                   backgroundColor: entry.color,
-                  borderRadius: "2px",
-                  border: "1px solid #ccc",
-                  pointerEvents: "none",
                 }}
               />
               <input
@@ -64,22 +48,12 @@ const CustomLegend = ({
                   onColorChange(entry.value, e.target.value);
                 }}
                 onClick={(e) => e.stopPropagation()}
-                style={{
-                  position: "absolute",
-                  top: "0",
-                  left: "0",
-                  width: "14px",
-                  height: "14px",
-                  border: "none",
-                  cursor: "pointer",
-                  opacity: 0,
-                  padding: 0,
-                }}
+                className={styles.input}
               />
             </div>
             <span
               onClick={() => onLegendClick(entry.value)}
-              style={{ color: "#000", cursor: "pointer" }}
+              className={styles.text}
             >
               {entry.value}
             </span>
@@ -119,7 +93,7 @@ const SnackBrandsDonutChart = () => {
         } else {
           setData([]);
         }
-      } catch (error) {
+      } catch {
         setData([]);
       }
     };
