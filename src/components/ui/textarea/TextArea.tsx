@@ -1,20 +1,20 @@
-interface InputProps {
+interface TextareaProps {
   className?: string;
-  type?: string;
   id?: string;
   name?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
   value?: string;
   placeholder?: string;
-  label?: string | undefined;
+  label?: string;
   required?: boolean;
+  rows?: number;
+  maxLength?: number;
 }
 
-const Input = ({
+const Textarea = ({
   className,
-  type,
   id,
   name,
   onChange,
@@ -24,24 +24,27 @@ const Input = ({
   placeholder,
   label,
   required,
-}: InputProps) => {
+  rows = 5,
+  maxLength,
+}: TextareaProps) => {
   return (
     <>
       {label && <label htmlFor={id || ""}>{label}</label>}
-      <input
-        type={type || ""}
+      <textarea
         id={id || ""}
         name={name || ""}
-        className={`${className || ""}`}
+        className={className || ""}
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
         value={value || ""}
         placeholder={placeholder}
         required={required || false}
+        rows={rows}
+        maxLength={maxLength}
       />
     </>
   );
 };
 
-export default Input;
+export default Textarea;

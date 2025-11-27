@@ -20,7 +20,7 @@ export const getWeeklyMoodTrendApi = async () => {
   return response?.data;
 };
 
-export const geWeeklyWorkoutTrendApi = async () => {
+export const getWeeklyWorkoutTrendApi = async () => {
   const response = await apiClient.get("/mock/weekly-workout-trend");
   return response?.data;
 };

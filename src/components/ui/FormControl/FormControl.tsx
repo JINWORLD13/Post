@@ -3,12 +3,23 @@ import styles from "./FormControl.module.scss";
 interface FormControlProps {
   className?: string;
   inputDataClassName?: string;
+  children: React.ReactNode;
 }
 
-const FormControl = ({ className, inputDataClassName, ...props }: React.FC<FormControlProps>) => {
+const FormControl: React.FC<FormControlProps> = ({
+  className,
+  inputDataClassName,
+  children,
+}) => {
   return (
     <div className={`${styles.container} ${className || ""}`}>
-      <div className={`${styles["input-data"]} ${inputDataClassName || ""}`}>{props?.children}</div>
+      <div className={styles["input-data"]}>
+        {inputDataClassName ? (
+          <div className={inputDataClassName}>{children}</div>
+        ) : (
+          children
+        )}
+      </div>
     </div>
   );
 };

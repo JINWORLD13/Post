@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import styles from "./Auth.module.scss";
+import formControlStyles from "../../components/ui/formControl/FormControl.module.scss";
 import { Navigate } from "react-router-dom";
 import { loginApi } from "../../api/auth/authApi";
 import Card from "../../components/ui/card/Card";
@@ -24,7 +25,8 @@ const Auth = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState<boolean>(false);
   const [isEmailFocused, setIsEmailFocused] = useState<boolean>(false);
-  const { login, logout, isAuthenticated } = useAuth();
+  const [error, setError] = useState<string | null>(null);
+  const { login, isAuthenticated } = useAuth();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -50,6 +52,7 @@ const Auth = () => {
     try {
       if (isLoading) return;
       setIsLoading(true);
+      setError(null);
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
@@ -61,10 +64,24 @@ const Auth = () => {
         password: authForm.password,
         signal: abortController.signal,
       });
-      login(result?.token);
+      if (result?.token && result?.user) {
+        login(result.token, result.user);
+      } else {
+        setError("로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.");
+      }
       return result;
-    } catch (error) {
-      logout();
+    } catch (error: unknown) {
+      let errorMessage =
+        "로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.";
+      if (error && typeof error === "object" && "response" in error) {
+        const axiosError = error as {
+          response?: { data?: { message?: string } };
+        };
+        errorMessage = axiosError.response?.data?.message || errorMessage;
+      } else if (error instanceof Error) {
+        errorMessage = error.message || errorMessage;
+      }
+      setError(errorMessage);
       return null;
     } finally {
       setIsLoading(false);
@@ -83,7 +100,7 @@ const Auth = () => {
     <div className={`${styles.container}`}>
       <Card className={`${styles["login-container"]}`}>
         <Form onSubmit={onSubmit}>
-          <FormControl>
+          <FormControl inputDataClassName={formControlStyles.login}>
             <LoginInput
               type="email"
               name="email"
@@ -92,11 +109,11 @@ const Auth = () => {
               onBlur={handleEmailBlur}
               value={authForm.email}
               placeholder={isEmailFocused ? "Email" : ""}
-              label="Email"
+              label={authForm?.email ? "" : "Email"}
               required
             />
           </FormControl>
-          <FormControl>
+          <FormControl inputDataClassName={formControlStyles.login}>
             <LoginInput
               type="password"
               name="password"
@@ -105,13 +122,14 @@ const Auth = () => {
               onBlur={handlePasswordBlur}
               value={authForm.password}
               placeholder={isPasswordFocused ? "Password" : ""}
-              label="Password"
+              label={authForm?.password ? "" : "Password"}
               required
             />
           </FormControl>
+          {error && <div className={`${styles["error-message"]}`}>{error}</div>}
           <div className={`${styles["login-button-box"]}`}>
             <Button type="submit" disabled={isLoading}>
-              Login
+              {isLoading ? "로그인 중..." : "Login"}
             </Button>
           </div>
         </Form>

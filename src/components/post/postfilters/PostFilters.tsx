@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "../../ui/Input/Input";
 import Select from "../../ui/Select/Select";
-import { Category, SortField, SortOrder } from "../../../types/post";
+import { Category, type SortField, type SortOrder } from "../../../types/post";
 import styles from "./PostFilters.module.scss";
 
 interface PostFiltersProps {
@@ -12,7 +12,7 @@ interface PostFiltersProps {
   sortOrder: SortOrder;
   onSortOrderChange: (order: SortOrder) => void;
   categoryFilter: Category | "all";
-  onCategoryFilterChange: (category: Category | "all") => void;
+  onCategoryFilterChange: (category: Category) => void;
 }
 
 const PostFilters: React.FC<PostFiltersProps> = ({
@@ -27,7 +27,7 @@ const PostFilters: React.FC<PostFiltersProps> = ({
 }) => {
   const sortFieldOptions = [
     { value: "title", label: "Title" },
-    { value: "createdAt", label: "Time" },
+    { value: "createdAt", label: "Date" },
   ];
 
   const sortOrderOptions = [
@@ -36,7 +36,7 @@ const PostFilters: React.FC<PostFiltersProps> = ({
   ];
 
   const categoryOptions = [
-    { value: "all", label: "All" },
+    { value: Category.ALL, label: "All" },
     { value: Category.NOTICE, label: "Notice" },
     { value: Category.QNA, label: "Q&A" },
     { value: Category.FREE, label: "Free" },
@@ -61,11 +61,7 @@ const PostFilters: React.FC<PostFiltersProps> = ({
           id="category"
           name="category"
           value={categoryFilter}
-          onChange={(e) =>
-            onCategoryFilterChange(
-              e.target.value === "all" ? "all" : (e.target.value as Category)
-            )
-          }
+          onChange={(e) => onCategoryFilterChange(e.target.value as Category)}
           label="Category"
           options={categoryOptions}
         />

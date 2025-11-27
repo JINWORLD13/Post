@@ -5,7 +5,7 @@ import axios, {
 } from "axios";
 
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL || "https://fe-hiring-rest-api.vercel.app",
   timeout: 10000, // 10초이상 대기 시 요청 취소
   headers: {
     "Content-Type": "application/json",
