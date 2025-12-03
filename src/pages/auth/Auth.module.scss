@@ -2,8 +2,9 @@
 
 %login-container {
   width: 100%;
-  max-width: 480px;
-  padding: 3.5rem 2.5rem;
+  max-width: 28rem;
+  padding: 3rem 2.5rem;
+  z-index: 10;
 }
 
 .container {
@@ -11,11 +12,9 @@
   min-height: 100vh;
   position: relative;
   @include All.flex-center();
-  padding: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  background-size: 200% 200%;
-  animation: gradientShift 15s ease infinite;
   overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
 }
 
 .background-decoration {
@@ -25,14 +24,14 @@
   top: 0;
   left: 0;
   overflow: hidden;
-  z-index: 0;
+  z-index: 1;
 }
 
 .gradient-orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.3;
+  opacity: 0.5;
   animation: float 20s ease-in-out infinite;
 
   &:nth-child(1) {
@@ -45,12 +44,12 @@
   }
 
   &:nth-child(2) {
-    width: 500px;
-    height: 500px;
+    width: 300px;
+    height: 300px;
     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    bottom: -150px;
-    right: -150px;
-    animation-delay: 5s;
+    bottom: -50px;
+    right: -50px;
+    animation-delay: 7s;
   }
 
   &:nth-child(3) {
@@ -58,27 +57,43 @@
     height: 350px;
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation-delay: 10s;
+    right: 10%;
+    animation-delay: 14s;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
   }
 }
 
 .login-container {
+  @include All.absolute-center();
   @extend %login-container;
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  z-index: 1;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  animation: slideUp 0.6s ease-out;
+}
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -89,14 +104,13 @@
 
 .login-title {
   font-size: 2.25rem;
+  font-weight: 700;
   margin: 0 0 0.75rem 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-weight: 800;
   letter-spacing: -0.5px;
-  animation: titleFadeIn 0.8s ease-out 0.2s both;
 }
 
 .login-subtitle {
@@ -104,20 +118,35 @@
   color: #64748b;
   margin: 0;
   font-weight: 400;
-  animation: titleFadeIn 0.8s ease-out 0.3s both;
 }
 
+.login-container label {
+  display: block;
+  font-weight: 600;
+  color: #334155;
+}
 
-.error-message {
-  color: #e53e3e;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  text-align: center;
-  padding: 0.75rem;
-  background: rgba(229, 62, 62, 0.1);
-  border-radius: 8px;
-  border: 1px solid rgba(229, 62, 62, 0.2);
-  font-weight: 500;
+.login-container input {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  color: #1e293b;
+  background: transparent;
+}
+
+.login-container input:focus {
+  outline: none;
+}
+
+.login-container input::placeholder {
+  color: #94a3b8;
+  transition: color 0.3s ease;
+}
+
+.login-container input:focus::placeholder {
+  color: #cbd5e1;
 }
 
 .login-button-box {
@@ -128,100 +157,62 @@
 
 .login-button {
   width: 100%;
-  padding: 0.875rem 2rem;
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: none;
-  color: white;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
-  }
+  padding: 0.875rem 1.5rem !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  border-radius: 12px !important;
+  border: none !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 14px rgba(102, 126, 234, 0.4) !important;
+  cursor: pointer !important;
 
   &:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
-    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-
-    &::before {
-      left: 100%;
-    }
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5) !important;
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
   }
 
   &:active:not(:disabled) {
     transform: translateY(0);
-    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4) !important;
   }
 
   &:disabled {
     opacity: 0.7;
-    cursor: not-allowed;
-    transform: none;
+    cursor: not-allowed !important;
+    transform: none !important;
+  }
+
+  &:focus {
+    outline: none !important;
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.4),
+      0 0 0 3px rgba(102, 126, 234, 0.2) !important;
   }
 }
-  
+
 .gap {
   display: inline-block;
   width: 30px;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px) scale(0.95);
+// Responsive design
+@media (max-width: 640px) {
+  .container {
+    padding: 1rem;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
 
-@keyframes titleFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+  %login-container {
+    max-width: 100%;
+    padding: 2rem 1.5rem;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
+  .login-title {
+    font-size: 1.875rem;
   }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 
-@keyframes float {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(30px, -30px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
+  .login-subtitle {
+    font-size: 0.875rem;
   }
 }
