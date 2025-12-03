@@ -1,5 +1,5 @@
 .delete-modal-content {
-  padding: 1.5rem !important;
+  padding: 1.5rem;
   max-width: 500px;
 }
 
@@ -8,7 +8,7 @@
   flex-direction: column;
   max-width: 500px;
   width: 100%;
-  color: #2d3748;
+  color: #e0e0e0;
   margin: 0 auto;
 }
 
@@ -41,7 +41,7 @@
 .close-button {
   background: transparent;
   border: none;
-  color: #718096;
+  color: #b0b0c0;
   font-size: 2rem;
   cursor: pointer;
   padding: 0;
@@ -56,7 +56,7 @@
 
   &:hover:not(:disabled) {
     background-color: rgba(239, 68, 68, 0.1);
-    color: #dc2626;
+    color: #ff6b6b;
   }
 
   &:active:not(:disabled) {
@@ -82,7 +82,7 @@
   font-size: 1.125rem;
   font-weight: 600;
   margin: 0 0 1rem 0;
-  color: #1a202c;
+  color: #e0e0e0;
   line-height: 1.6;
 }
 
@@ -92,23 +92,23 @@
   gap: 0.5rem;
   margin-bottom: 1rem;
   padding: 0.75rem;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(239, 68, 68, 0.15);
   border-radius: 8px;
   border-left: 4px solid #ef4444;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .preview-label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #4a5568;
+  color: #b0b0c0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .preview-value {
   font-size: 1rem;
-  color: #1a202c;
+  color: #e0e0e0;
   word-break: break-word;
   font-weight: 500;
   line-height: 1.5;

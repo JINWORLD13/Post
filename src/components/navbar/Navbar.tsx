@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
   };
   return (
     <div className={`${styles.navbar}`}>
-      <div className={`${styles["logo"]}`}>
+      <NavLink to="/" className={`${styles["logo"]}`}>
         <svg
           width="32"
           height="32"
@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
           </defs>
         </svg>
         <span className={styles["logo-text"]}>DataViz</span>
-      </div>
+      </NavLink>
       <div className={`${styles["flex-gap"]}`} />
       <div className={`${styles["navbar-links"]}`}>
         <NavLink

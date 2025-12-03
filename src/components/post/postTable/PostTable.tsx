@@ -27,7 +27,7 @@ const PostTable = ({
   const { user } = useAuth();
   const [columns, setColumns] = useState<ColumnConfig[]>([
     { key: "no", label: "번호", width: 80, visible: true },
-    { key: "title", label: "제목", width: 200, visible: true },
+    { key: "title", label: "제목", width: 500, visible: true },
     { key: "category", label: "카테고리", width: 120, visible: true },
     { key: "tags", label: "태그", width: 150, visible: true },
     { key: "author", label: "작성자", width: 120, visible: true },

@@ -8,10 +8,10 @@
 .navbar{
     width: 100vw;
     @include All.flex-center();
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+    border-bottom: 1px solid rgba(0, 217, 255, 0.3);
+    background: linear-gradient(135deg, rgba(20, 20, 40, 0.95) 0%, rgba(26, 26, 46, 0.9) 100%);
     backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 217, 255, 0.1);
     padding: 1rem 0;
     position: sticky;
     top: 0;
@@ -34,7 +34,7 @@
     will-change: box-shadow;
     
     &:hover {
-        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 217, 255, 0.3);
         
         .logo-icon {
             transform: rotate(15deg) scale(1.1);
@@ -44,17 +44,18 @@
 
 .logo-icon {
     transition: all 0.3s ease;
-    filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.3));
+    filter: drop-shadow(0 2px 4px rgba(0, 217, 255, 0.5));
 }
 
 .logo-text {
     font-weight: 700;
     font-size: 1.5rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #00d9ff 0%, #00a8cc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: -0.5px;
+    text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
 }
 
 .navbar-links {
@@ -69,7 +70,7 @@
     padding: 0.6rem 1.2rem;
     text-decoration: none;
     @include Font.default-font;
-    color: #4a5568;
+    color: #b0b0c0;
     border-radius: 8px;
     transition: all 0.3s ease;
     font-weight: 500;
@@ -77,16 +78,16 @@
     will-change: background-color, color, box-shadow;
     
     &:hover {
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-        color: #667eea;
-        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(0, 168, 204, 0.15) 100%);
+        color: #00d9ff;
+        box-shadow: 0 2px 8px rgba(0, 217, 255, 0.3);
     }
     
     &.active {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: #ffffff;
+        background: linear-gradient(135deg, #00d9ff 0%, #00a8cc 100%);
+        color: #0a0a0a;
         font-weight: 600;
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 4px 12px rgba(0, 217, 255, 0.4), 0 0 20px rgba(0, 217, 255, 0.2);
         
         &::after {
             content: '';
@@ -96,8 +97,9 @@
             transform: translateX(-50%);
             width: 80%;
             height: 3px;
-            background: #ffffff;
+            background: #00f5ff;
             border-radius: 2px;
+            box-shadow: 0 0 10px rgba(0, 245, 255, 0.8);
         }
     }
 }

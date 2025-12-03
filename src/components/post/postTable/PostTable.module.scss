@@ -7,17 +7,17 @@
 
 .column-controls {
   padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 217, 255, 0.2);
+  background: rgba(30, 30, 46, 0.8);
   backdrop-filter: blur(10px);
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 217, 255, 0.1);
 
   h3 {
     margin: 0 0 1rem 0;
     font-size: 1.1rem;
     font-weight: 600;
-    color: #4a5568;
+    color: #00d9ff;
   }
 }
 
@@ -35,17 +35,17 @@
   padding: 0.5rem 1rem;
   border-radius: 8px;
   transition: all 0.2s ease;
-  color: #4a5568;
+  color: #b0b0c0;
 
   &:hover {
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(0, 217, 255, 0.15);
   }
 
   input[type="checkbox"] {
     cursor: pointer;
     width: 18px;
     height: 18px;
-    accent-color: #667eea;
+    accent-color: #00d9ff;
   }
 
   span {
@@ -57,11 +57,11 @@
 .post-table-box {
   width: 100%;
   overflow-x: auto;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 217, 255, 0.2);
+  background: rgba(30, 30, 46, 0.8);
   backdrop-filter: blur(10px);
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 217, 255, 0.1);
 }
 
 .table {
@@ -72,14 +72,14 @@
   thead {
     th {
       padding: 1rem;
-      border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+      border-bottom: 2px solid rgba(0, 217, 255, 0.3);
       font-weight: 600;
       background: linear-gradient(
         135deg,
-        rgba(102, 126, 234, 0.1) 0%,
-        rgba(118, 75, 162, 0.1) 100%
+        rgba(0, 217, 255, 0.15) 0%,
+        rgba(0, 168, 204, 0.15) 100%
       );
-      color: #4a5568;
+      color: #00d9ff;
       position: relative;
       user-select: none;
       font-size: 0.95rem;
@@ -88,14 +88,14 @@
 
   tbody {
     tr {
-      border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+      border-bottom: 1px solid rgba(0, 217, 255, 0.1);
       transition: all 0.2s ease;
 
       &:hover {
         background: linear-gradient(
           135deg,
-          rgba(102, 126, 234, 0.05) 0%,
-          rgba(118, 75, 162, 0.05) 100%
+          rgba(0, 217, 255, 0.08) 0%,
+          rgba(0, 168, 204, 0.08) 100%
         );
       }
     }
@@ -105,7 +105,7 @@
       border: none;
       text-align: center;
       word-break: break-word;
-      color: #4a5568;
+      color: #e0e0e0;
       font-size: 0.9rem;
     }
   }
@@ -123,18 +123,18 @@
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: rgba(102, 126, 234, 0.5);
+    background-color: rgba(0, 217, 255, 0.5);
   }
 
   &:active {
-    background-color: rgba(102, 126, 234, 0.8);
+    background-color: rgba(0, 217, 255, 0.8);
   }
 }
 
 .empty-cell {
   text-align: center;
   padding: 3rem;
-  color: #718096;
+  color: #6b6b8a;
   font-size: 1.1rem;
 }
 
@@ -149,7 +149,7 @@
   padding: 0.25rem 0.75rem;
   font-size: 0.875rem;
   background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-  border: 1px solid transparent !important;
+  border: 1px solid transparent;
   color: white;
   box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3);
   transition: background 0.3s ease, box-shadow 0.3s ease;
@@ -159,10 +159,10 @@
 
   &:hover,
   &:active {
-    background: linear-gradient(135deg, #38a169 0%, #48bb78 100%) !important;
-    border: 1px solid transparent !important;
+    background: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+    border: 1px solid transparent;
     box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
-    color: white !important;
+    color: white;
   }
 }
 
@@ -170,7 +170,7 @@
   padding: 0.25rem 0.75rem;
   font-size: 0.875rem;
   background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
-  border: 1px solid transparent !important;
+  border: 1px solid transparent;
   color: white;
   box-shadow: 0 2px 8px rgba(245, 101, 101, 0.3);
   transition: background 0.3s ease, box-shadow 0.3s ease;
@@ -180,26 +180,27 @@
 
   &:hover,
   &:active {
-    background: linear-gradient(135deg, #e53e3e 0%, #f56565 100%) !important;
-    border: 1px solid transparent !important;
+    background: linear-gradient(135deg, #e53e3e 0%, #f56565 100%);
+    border: 1px solid transparent;
     box-shadow: 0 4px 12px rgba(245, 101, 101, 0.4);
-    color: white !important;
+    color: white;
   }
 }
 
 .title-link {
   cursor: pointer;
-  color: #667eea;
+  color: #00d9ff;
   text-decoration: none;
   transition: all 0.2s ease;
   font-weight: 500;
 
   &:hover {
-    color: #764ba2;
+    color: #00f5ff;
     text-decoration: underline;
+    text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
   }
 
   &:active {
-    color: #553c9a;
+    color: #00a8cc;
   }
 }

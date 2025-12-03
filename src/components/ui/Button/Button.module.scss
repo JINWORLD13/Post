@@ -1,24 +1,29 @@
 .button {
     font: inherit;
-    border: 1px solid #08a045;
-    background: #08a045;
+    border: 1px solid #00d9ff;
+    background: linear-gradient(135deg, #00d9ff 0%, #00a8cc 100%);
     border-radius: 10px;
-    color: white;
+    color: #0a0a0a;
     padding: 0.25rem 1rem;
     cursor: pointer;
     margin: 0;
     box-sizing: border-box;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 217, 255, 0.3);
   }
   
   .button:hover,
   .button:active {
-    background: white;
-    border: 1px solid #08a045;
-    color: #08a045;
+    background: linear-gradient(135deg, #00f5ff 0%, #00d9ff 100%);
+    border: 1px solid #00f5ff;
+    color: #0a0a0a;
     margin: 0;
+    box-shadow: 0 4px 12px rgba(0, 217, 255, 0.5), 0 0 20px rgba(0, 217, 255, 0.3);
+    transform: translateY(-1px);
   }
   
   .button:focus {
     outline: none;
+    box-shadow: 0 2px 8px rgba(0, 217, 255, 0.3), 0 0 0 3px rgba(0, 217, 255, 0.2);
   }
   

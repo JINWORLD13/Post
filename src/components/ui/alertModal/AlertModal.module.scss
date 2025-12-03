@@ -10,14 +10,14 @@
   align-items: center;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid rgba(102, 126, 234, 0.15);
+  border-bottom: 2px solid rgba(0, 217, 255, 0.3);
 }
 
 .alert-modal-title {
   margin: 0;
   font-size: 1.625rem;
   font-weight: 700;
-  color: #1a202c;
+  color: #00d9ff;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -33,7 +33,7 @@
   border: none;
   font-size: 2rem;
   line-height: 1;
-  color: #718096;
+  color: #6b6b8a;
   cursor: pointer;
   padding: 0;
   width: 36px;
@@ -45,12 +45,12 @@
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: rgba(102, 126, 234, 0.1);
-    color: #667eea;
+    background-color: rgba(0, 217, 255, 0.15);
+    color: #00d9ff;
   }
 
   &:active {
-    background-color: rgba(102, 126, 234, 0.15);
+    background-color: rgba(0, 217, 255, 0.25);
     transform: scale(0.95);
   }
 }
@@ -58,16 +58,16 @@
 .alert-modal-content {
   margin-bottom: 1.5rem;
   padding: 1rem;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.08) 0%, rgba(0, 168, 204, 0.08) 100%);
   border-radius: 12px;
-  border: 1px solid rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(0, 217, 255, 0.2);
 }
 
 .alert-modal-message {
   margin: 0;
   font-size: 1.0625rem;
   line-height: 1.7;
-  color: #2d3748;
+  color: #e0e0e0;
   word-break: break-word;
   font-weight: 500;
 }
@@ -77,6 +77,6 @@
   justify-content: flex-end;
   gap: 0.75rem;
   padding-top: 1rem;
-  border-top: 2px solid rgba(102, 126, 234, 0.15);
+  border-top: 2px solid rgba(0, 217, 255, 0.3);
 }
 
