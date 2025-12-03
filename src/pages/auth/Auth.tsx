@@ -89,7 +89,16 @@ const Auth = () => {
 
   return (
     <div className={`${styles.container}`}>
+      <div className={styles["background-decoration"]}>
+        <div className={styles["gradient-orb"]}></div>
+        <div className={styles["gradient-orb"]}></div>
+        <div className={styles["gradient-orb"]}></div>
+      </div>
       <Card className={`${styles["login-container"]}`}>
+        <div className={styles["login-header"]}>
+          <h2 className={styles["login-title"]}>환영합니다</h2>
+          <p className={styles["login-subtitle"]}>계정에 로그인하여 시작하세요</p>
+        </div>
         <Form onSubmit={onSubmit}>
           <FormControl inputDataClassName={formControlStyles.login}>
             <LoginInput
@@ -118,8 +127,8 @@ const Auth = () => {
             />
           </FormControl>
           <div className={`${styles["login-button-box"]}`}>
-            <Button type="submit" disabled={isLoading}>
-              로그인
+            <Button type="submit" disabled={isLoading} className={styles["login-button"]}>
+              {isLoading ? "로그인 중..." : "로그인"}
             </Button>
           </div>
         </Form>

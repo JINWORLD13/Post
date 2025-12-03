@@ -1,9 +1,9 @@
 .container {
-  width: 90%;
-  padding: 20px;
+  width: 100%;
+  padding: 0;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 7px;
+  margin-bottom: 1.75rem;
 }
 
 .container .input-data {
@@ -23,30 +23,41 @@
   width: 100%;
   height: 100%;
   border: none;
+  border-bottom: none;
   font-size: 1.1rem;
-  border-bottom: 2px solid silver;
-  margin-bottom: 5px;
-  padding-bottom: 8px;
-  padding-top: 8px;
+  margin-bottom: 0;
+  padding-bottom: 12px;
+  padding-top: 12px;
+  padding-left: 0;
+  padding-right: 0;
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.container .input-data input:focus {
+  outline: none;
 }
 
 .input-data .login input:focus ~ label, /** ~는 형제 선택자임(병렬관계에서의 label에 적용)*/
   .input-data .login input:valid ~ label {
-  transform: translateY(-35px);
-  font-size: 0.9rem;
-  color: #06770a;
-  font-weight: 500;
+  transform: translateY(-28px);
+  font-size: 0.85rem;
+  color: #667eea;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 .container .input-data .login label {
   position: absolute;
-  bottom: 13px;
+  bottom: 2px;
   left: 0;
-  color: grey;
+  color: #94a3b8;
   pointer-events: none; /** 마우스와 관련 이벤트는 전부 무효 */
-  transition: all 0.3s ease;
-  font-size: 1.1rem;
-  line-height: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 500;
 }
 
 .container .input-data .login .underline {
@@ -54,14 +65,17 @@
   bottom: 0px;
   height: 2px;
   width: 100%;
+  background: rgba(148, 163, 184, 0.3);
 }
 .input-data .login .underline::before {
   position: absolute;
   content: "";
   height: 100%;
   width: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
   transform: scaleX(0);
-  transition: transform 0.3s ease;
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .input-data .login input:focus ~ .underline:before,
 .input-data .login input:valid ~ .underline:before {
