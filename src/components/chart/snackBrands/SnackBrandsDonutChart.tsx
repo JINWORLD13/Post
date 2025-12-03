@@ -140,7 +140,7 @@ const SnackBrandsDonutChart = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Popular Snack Brands - Donut Chart</h2>
+      <h2>인기 스낵 브랜드 - 도넛 차트</h2>
       <ResponsiveContainer width="100%" height={400}>
         <PieChart>
           <Pie

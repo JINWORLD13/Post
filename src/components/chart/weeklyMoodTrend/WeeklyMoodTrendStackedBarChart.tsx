@@ -163,14 +163,14 @@ const WeeklyMoodTrendStackedBarChart = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Weekly Mood Trend - Stacked Bar Chart</h2>
+      <h2>주간 기분 트렌드 - 스택 바 차트</h2>
       <ResponsiveContainer width="100%" height={400}>
         <BarChart data={Array.isArray(data) ? data : []}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="week" />
           <YAxis
             label={{
-              value: "Percentage (%)",
+              value: "비율 (%)",
               angle: -90,
               position: "insideLeft",
             }}
@@ -181,7 +181,7 @@ const WeeklyMoodTrendStackedBarChart = () => {
               dataKey="happy"
               stackId="a"
               fill={colors.happy || DEFAULT_COLORS.happy}
-              name="Happy"
+              name="행복"
             />
           )}
           {!hiddenItems.includes("tired") && (
@@ -189,7 +189,7 @@ const WeeklyMoodTrendStackedBarChart = () => {
               dataKey="tired"
               stackId="a"
               fill={colors.tired || DEFAULT_COLORS.tired}
-              name="Tired"
+              name="피곤"
             />
           )}
           {!hiddenItems.includes("stressed") && (
@@ -197,7 +197,7 @@ const WeeklyMoodTrendStackedBarChart = () => {
               dataKey="stressed"
               stackId="a"
               fill={colors.stressed || DEFAULT_COLORS.stressed}
-              name="Stressed"
+              name="스트레스"
             />
           )}
         </BarChart>

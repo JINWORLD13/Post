@@ -8,6 +8,7 @@ interface PostTableProps {
   posts: Post[];
   onEdit: (post: Post) => void;
   onDelete: (id: string) => void;
+  onTitleClick?: (post: Post) => void;
 }
 
 interface ColumnConfig {
@@ -17,16 +18,21 @@ interface ColumnConfig {
   visible: boolean;
 }
 
-const PostTable = ({ posts, onEdit, onDelete }: PostTableProps) => {
+const PostTable = ({
+  posts,
+  onEdit,
+  onDelete,
+  onTitleClick,
+}: PostTableProps) => {
   const { user } = useAuth();
   const [columns, setColumns] = useState<ColumnConfig[]>([
-    { key: "no", label: "No.", width: 80, visible: true },
-    { key: "title", label: "Title", width: 200, visible: true },
-    { key: "category", label: "Category", width: 120, visible: true },
-    { key: "tags", label: "Tags", width: 150, visible: true },
-    { key: "author", label: "Author", width: 120, visible: true },
-    { key: "date", label: "Date", width: 150, visible: true },
-    { key: "actions", label: "Actions", width: 150, visible: true },
+    { key: "no", label: "번호", width: 80, visible: true },
+    { key: "title", label: "제목", width: 200, visible: true },
+    { key: "category", label: "카테고리", width: 120, visible: true },
+    { key: "tags", label: "태그", width: 150, visible: true },
+    { key: "author", label: "작성자", width: 120, visible: true },
+    { key: "date", label: "날짜", width: 150, visible: true },
+    { key: "actions", label: "작업", width: 150, visible: true },
   ]);
 
   const [resizingColumn, setResizingColumn] = useState<string | null>(null);
@@ -154,7 +160,18 @@ const PostTable = ({ posts, onEdit, onDelete }: PostTableProps) => {
                     <td>{index + 1}</td>
                   )}
                   {columns.find((col) => col.key === "title")?.visible && (
-                    <td>{post.title}</td>
+                    <td>
+                      {onTitleClick ? (
+                        <span
+                          className={styles["title-link"]}
+                          onClick={() => onTitleClick(post)}
+                        >
+                          {post.title}
+                        </span>
+                      ) : (
+                        post.title
+                      )}
+                    </td>
                   )}
                   {columns.find((col) => col.key === "category")?.visible && (
                     <td>{post.category}</td>

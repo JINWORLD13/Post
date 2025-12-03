@@ -26,20 +26,20 @@ const PostFilters: React.FC<PostFiltersProps> = ({
   onCategoryFilterChange,
 }) => {
   const sortFieldOptions = [
-    { value: "title", label: "Title" },
-    { value: "createdAt", label: "Date" },
+    { value: "title", label: "제목" },
+    { value: "createdAt", label: "날짜" },
   ];
 
   const sortOrderOptions = [
-    { value: "asc", label: "Asc" },
-    { value: "desc", label: "Desc" },
+    { value: "asc", label: "오름차순" },
+    { value: "desc", label: "내림차순" },
   ];
 
   const categoryOptions = [
-    { value: Category.ALL, label: "All" },
-    { value: Category.NOTICE, label: "Notice" },
+    { value: Category.ALL, label: "전체" },
+    { value: Category.NOTICE, label: "공지" },
     { value: Category.QNA, label: "Q&A" },
-    { value: Category.FREE, label: "Free" },
+    { value: Category.FREE, label: "자유" },
   ];
 
   return (
@@ -51,8 +51,8 @@ const PostFilters: React.FC<PostFiltersProps> = ({
           type="text"
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          placeholder="Title or Content Search..."
-          label="Search"
+          placeholder="제목 또는 내용 검색..."
+          label="검색"
         />
       </div>
 
@@ -62,7 +62,7 @@ const PostFilters: React.FC<PostFiltersProps> = ({
           name="category"
           value={categoryFilter}
           onChange={(e) => onCategoryFilterChange(e.target.value as Category)}
-          label="Category"
+          label="카테고리"
           options={categoryOptions}
         />
       </div>
@@ -73,7 +73,7 @@ const PostFilters: React.FC<PostFiltersProps> = ({
           name="sortField"
           value={sortField}
           onChange={(e) => onSortFieldChange(e.target.value as SortField)}
-          label="Sort Field"
+          label="정렬 필드"
           options={sortFieldOptions}
         />
       </div>
@@ -84,7 +84,7 @@ const PostFilters: React.FC<PostFiltersProps> = ({
           name="sortOrder"
           value={sortOrder}
           onChange={(e) => onSortOrderChange(e.target.value as SortOrder)}
-          label="Sort Order"
+          label="정렬 순서"
           options={sortOrderOptions}
         />
       </div>

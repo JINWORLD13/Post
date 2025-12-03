@@ -6,10 +6,12 @@ interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   value?: string;
   placeholder?: string;
   label?: string | undefined;
   required?: boolean;
+  disabled?: boolean;
 }
 
 const Input = ({
@@ -20,10 +22,12 @@ const Input = ({
   onChange,
   onFocus,
   onBlur,
+  onKeyDown,
   value,
   placeholder,
   label,
   required,
+  disabled,
 }: InputProps) => {
   return (
     <>
@@ -36,9 +40,11 @@ const Input = ({
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
+        onKeyDown={onKeyDown}
         value={value || ""}
         placeholder={placeholder}
         required={required || false}
+        disabled={disabled || false}
       />
     </>
   );

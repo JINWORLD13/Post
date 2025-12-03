@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
             `${styles.link} ${isActive ? styles.active : ""}`
           }
         >
-          Home
+          홈
         </NavLink>
         <NavLink
           to="/post"
@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
             `${styles.link} ${isActive ? styles.active : ""}`
           }
         >
-          Post
+          게시글
         </NavLink>
         {isAuthenticated && (
           <NavLink
@@ -61,12 +61,12 @@ const Navbar: React.FC = () => {
               `${styles.link} ${isActive ? styles.active : ""}`
             }
           >
-            Chart
+            차트
           </NavLink>
         )}
         {isAuthenticated ? (
           <a href="#" onClick={handleLogout} className={styles.link}>
-            Logout
+            로그아웃
           </a>
         ) : (
           <NavLink
@@ -75,7 +75,7 @@ const Navbar: React.FC = () => {
               `${styles.link} ${isActive ? styles.active : ""}`
             }
           >
-            Login
+            로그인
           </NavLink>
         )}
       </div>

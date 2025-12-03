@@ -163,14 +163,14 @@ const WeeklyWorkoutTrendStackedBarChart = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Weekly Workout Trend - Stacked Bar Chart</h2>
+      <h2>주간 운동 트렌드 - 스택 바 차트</h2>
       <ResponsiveContainer width="100%" height={400}>
         <BarChart data={Array.isArray(data) ? data : []}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="week" />
           <YAxis
             label={{
-              value: "Percentage (%)",
+              value: "비율 (%)",
               angle: -90,
               position: "insideLeft",
             }}
@@ -181,7 +181,7 @@ const WeeklyWorkoutTrendStackedBarChart = () => {
               dataKey="running"
               stackId="a"
               fill={colors.running || DEFAULT_COLORS.running}
-              name="Running"
+              name="러닝"
             />
           )}
           {!hiddenItems.includes("cycling") && (
@@ -189,7 +189,7 @@ const WeeklyWorkoutTrendStackedBarChart = () => {
               dataKey="cycling"
               stackId="a"
               fill={colors.cycling || DEFAULT_COLORS.cycling}
-              name="Cycling"
+              name="사이클링"
             />
           )}
           {!hiddenItems.includes("stretching") && (
@@ -197,7 +197,7 @@ const WeeklyWorkoutTrendStackedBarChart = () => {
               dataKey="stretching"
               stackId="a"
               fill={colors.stretching || DEFAULT_COLORS.stretching}
-              name="Stretching"
+              name="스트레칭"
             />
           )}
         </BarChart>

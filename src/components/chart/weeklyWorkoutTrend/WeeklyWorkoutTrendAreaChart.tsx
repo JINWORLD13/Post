@@ -163,14 +163,14 @@ const WeeklyWorkoutTrendAreaChart = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Weekly Workout Trend - Area Chart</h2>
+      <h2>주간 운동 트렌드 - 영역 차트</h2>
       <ResponsiveContainer width="100%" height={400}>
         <AreaChart data={Array.isArray(data) ? data : []}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="week" />
           <YAxis
             label={{
-              value: "Percentage (%)",
+              value: "비율 (%)",
               angle: -90,
               position: "insideLeft",
             }}
@@ -183,7 +183,7 @@ const WeeklyWorkoutTrendAreaChart = () => {
               stackId="1"
               stroke={colors.running || DEFAULT_COLORS.running}
               fill={colors.running || DEFAULT_COLORS.running}
-              name="Running"
+              name="러닝"
             />
           )}
           {!hiddenItems.includes("cycling") && (
@@ -193,7 +193,7 @@ const WeeklyWorkoutTrendAreaChart = () => {
               stackId="1"
               stroke={colors.cycling || DEFAULT_COLORS.cycling}
               fill={colors.cycling || DEFAULT_COLORS.cycling}
-              name="Cycling"
+              name="사이클링"
             />
           )}
           {!hiddenItems.includes("stretching") && (
@@ -203,7 +203,7 @@ const WeeklyWorkoutTrendAreaChart = () => {
               stackId="1"
               stroke={colors.stretching || DEFAULT_COLORS.stretching}
               fill={colors.stretching || DEFAULT_COLORS.stretching}
-              name="Stretching"
+              name="스트레칭"
             />
           )}
         </AreaChart>

@@ -2,15 +2,20 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
-  z-index: 1000;
+  z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
   animation: fadeIn 0.2s ease-out;
+  
+  // 에러 모달의 경우 더 높은 z-index 적용
+  &.error-modal-overlay {
+    z-index: 10000;
+  }
 }
 
 .modal-content {
@@ -56,5 +61,66 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.modal-content.blink {
+  animation: blink 0.3s ease-in-out;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.9;
+  }
+}
+
+// blink 모달 스타일 - 하단 중앙에 위치
+.blink-modal {
+  background-color: transparent;
+  backdrop-filter: none;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 80px; // 하단에서 약간 위로
+  animation: none;
+}
+
+.blink-content {
+  padding: 1rem 1.5rem;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  animation: blinkFadeInOut 2s ease-in-out;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+
+  &::before {
+    display: none; // 상단 그라데이션 제거
+  }
+}
+
+@keyframes blinkFadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
   }
 }

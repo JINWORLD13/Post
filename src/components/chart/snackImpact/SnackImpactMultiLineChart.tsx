@@ -431,7 +431,7 @@ const SnackImpactMultiLineChart = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Snack Impact - Multi-Line Chart</h2>
+      <h2>스낵 임팩트 - 멀티라인 차트</h2>
       <ResponsiveContainer width="100%" height={400}>
         <LineChart data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           {/* 격자 표시 */}

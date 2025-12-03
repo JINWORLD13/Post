@@ -31,9 +31,10 @@
     gap: 0.75rem;
     transition: all 0.3s ease;
     cursor: pointer;
+    will-change: box-shadow;
     
     &:hover {
-        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
         
         .logo-icon {
             transform: rotate(15deg) scale(1.1);
@@ -73,11 +74,12 @@
     transition: all 0.3s ease;
     font-weight: 500;
     position: relative;
+    will-change: background-color, color, box-shadow;
     
     &:hover {
         background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
         color: #667eea;
-        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
     }
     
     &.active {

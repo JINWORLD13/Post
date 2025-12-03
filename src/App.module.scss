@@ -8,6 +8,7 @@
 }
 
 .outlet {
+  position: relative;
   flex: 1;
   width: 100%;
   min-width: 0; /* flex item들의 min-width가 auto(자식이 커질 때 outlet(부모)도 커져서 스크롤이 생성되므로 복잡해짐)여서 0으로 제약없는 고정값을 넣어 auto가 아니게 하여 overflow가 발생하지 않도록 설정*/

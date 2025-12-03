@@ -1,0 +1,82 @@
+.alert-modal {
+  min-width: 420px;
+  max-width: 520px;
+  width: 100%;
+}
+
+.alert-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(102, 126, 234, 0.15);
+}
+
+.alert-modal-title {
+  margin: 0;
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: #1a202c;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &::before {
+    content: "ℹ️";
+    font-size: 1.5rem;
+  }
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: #718096;
+  cursor: pointer;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+  }
+
+  &:active {
+    background-color: rgba(102, 126, 234, 0.15);
+    transform: scale(0.95);
+  }
+}
+
+.alert-modal-content {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.alert-modal-message {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #2d3748;
+  word-break: break-word;
+  font-weight: 500;
+}
+
+.alert-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 2px solid rgba(102, 126, 234, 0.15);
+}
+

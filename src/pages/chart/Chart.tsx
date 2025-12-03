@@ -18,7 +18,7 @@ const Chart = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Charts</h1>
+      <h1>차트</h1>
       <div className={styles.chartsGrid}>
         <CoffeeBrandsBarChart />
         <CoffeeBrandsDonutChart />

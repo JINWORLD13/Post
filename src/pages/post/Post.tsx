@@ -11,6 +11,8 @@ import {
   type SortOrder,
 } from "../../types/post";
 import PostForm from "../../components/post/postForm/PostForm";
+import PostDetailModal from "../../components/post/postDetailModal/PostDetailModal";
+import DeleteConfirmationModal from "../../components/post/deleteConfirmationModal/DeleteConfirmationModal";
 import {
   createPostApi,
   getPostsApi,
@@ -18,6 +20,8 @@ import {
   deletePostByIdApi,
 } from "../../api/post/postApi";
 import useAuth from "../../hooks/useAuth";
+import AlertModal from "../../components/ui/alertModal/AlertModal";
+import { showToast } from "../../components/ui/toast/toastUtils";
 
 const Post = () => {
   const { userId, isAuthenticated } = useAuth();
@@ -30,6 +34,13 @@ const Post = () => {
   const [categoryFilter, setCategoryFilter] = useState<Category>(Category.ALL);
   const [posts, setPosts] = useState<PostType[]>([]);
   const [editingPost, setEditingPost] = useState<PostType | null>(null);
+  const [selectedPost, setSelectedPost] = useState<PostType | null>(null);
+  const [detailModalOpen, setDetailModalOpen] = useState<boolean>(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
+  const [postToDelete, setPostToDelete] = useState<PostType | null>(null);
+  const [isDeleting, setIsDeleting] = useState<boolean>(false);
+  const [errorModalOpen, setErrorModalOpen] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const handleSearchQueryChange = (query: string) => {
     setSearchQuery(query);
@@ -56,6 +67,7 @@ const Post = () => {
         category: categoryFilter !== Category.ALL ? categoryFilter : undefined,
         sortField,
         sortOrder,
+        userId, // Mock 모드에서 사용자별 필터링을 위해 추가
       };
 
       const result = await getPostsApi(params);
@@ -69,7 +81,8 @@ const Post = () => {
         allPosts = result;
       }
 
-      // 현재 로그인한 사용자의 게시물만 필터링
+      // Mock 모드가 아닐 경우에만 클라이언트에서 필터링
+      // Mock 모드에서는 서버에서 이미 필터링됨
       const myPosts = allPosts.filter((post) => post.userId === userId);
       setPosts(myPosts);
     } catch {
@@ -113,9 +126,12 @@ const Post = () => {
         await fetchPosts(); // 목록 새로고침
         handleClose();
         setEditingPost(null);
-        alert("게시글이 성공적으로 저장되었습니다.");
+        showToast("게시글이 성공적으로 저장되었습니다.", "success");
       } else {
-        alert("게시글 저장에 실패했습니다. 다시 시도해주세요.");
+        setErrorMessage(
+          "게시글 저장에 실패했습니다.\n네트워크 연결을 확인하고 다시 시도해주세요."
+        );
+        setErrorModalOpen(true);
       }
       return result;
     } catch (error) {
@@ -123,11 +139,14 @@ const Post = () => {
         response?: { data?: { message?: string } };
         message?: string;
       };
-      const errorMessage =
+      const errorMsg =
         axiosError?.response?.data?.message ||
         axiosError?.message ||
-        "게시글 저장 중 오류가 발생했습니다.";
-      alert(`게시글 저장 실패: ${errorMessage}`);
+        "알 수 없는 오류가 발생했습니다.";
+      setErrorMessage(
+        `게시글 저장 중 오류가 발생했습니다.\n\n오류 내용: ${errorMsg}`
+      );
+      setErrorModalOpen(true);
       return null;
     } finally {
       setIsLoading(false);
@@ -140,15 +159,45 @@ const Post = () => {
     setOpen(true);
   };
 
-  const handleDelete = async (id: string) => {
-    if (!window.confirm("정말 삭제하시겠습니까?")) {
-      return;
+  const handleDelete = (id: string) => {
+    const post = posts.find((p) => p.id === id);
+    if (post) {
+      setPostToDelete(post);
+      setDeleteModalOpen(true);
     }
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!postToDelete || isDeleting) return;
+
     try {
-      await deletePostByIdApi(id);
+      setIsDeleting(true);
+      await deletePostByIdApi(postToDelete.id);
       await fetchPosts(); // 목록 새로고침
-    } catch {
-      // 에러 처리
+      setDeleteModalOpen(false);
+      setPostToDelete(null);
+    } catch (error) {
+      const axiosError = error as {
+        response?: { data?: { message?: string } };
+        message?: string;
+      };
+      const errorMsg =
+        axiosError?.response?.data?.message ||
+        axiosError?.message ||
+        "알 수 없는 오류가 발생했습니다.";
+      setErrorMessage(
+        `게시글 삭제 중 오류가 발생했습니다.\n\n오류 내용: ${errorMsg}`
+      );
+      setErrorModalOpen(true);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
+  const handleDeleteModalClose = () => {
+    if (!isDeleting) {
+      setDeleteModalOpen(false);
+      setPostToDelete(null);
     }
   };
 
@@ -160,11 +209,21 @@ const Post = () => {
     setOpen(false);
     setEditingPost(null);
   };
+
+  const handleTitleClick = (post: PostType) => {
+    setSelectedPost(post);
+    setDetailModalOpen(true);
+  };
+
+  const handleDetailModalClose = () => {
+    setDetailModalOpen(false);
+    setSelectedPost(null);
+  };
   return (
     <div className={`${styles.container}`}>
       {/* 제목 */}
       <div>
-        <h1>Post</h1>
+        <h1>게시글</h1>
       </div>
       <div className={`${styles["post-wrapper"]}`}>
         {/* 필터 */}
@@ -185,7 +244,12 @@ const Post = () => {
           </div>
         )}
         {/* 게시글 테이블 */}
-        <PostTable posts={posts} onEdit={handleEdit} onDelete={handleDelete} />
+        <PostTable
+          posts={posts}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          onTitleClick={handleTitleClick}
+        />
         {/* 글작성/수정 */}
         <Modal open={open} onClose={handleClose}>
           <PostForm
@@ -196,6 +260,27 @@ const Post = () => {
             isLoading={isLoading}
           />
         </Modal>
+        {/* 게시글 상세 모달 */}
+        <PostDetailModal
+          post={selectedPost}
+          open={detailModalOpen}
+          onClose={handleDetailModalClose}
+        />
+        {/* 삭제 확인 모달 */}
+        <DeleteConfirmationModal
+          open={deleteModalOpen}
+          onClose={handleDeleteModalClose}
+          onConfirm={handleDeleteConfirm}
+          postTitle={postToDelete?.title}
+          isLoading={isDeleting}
+        />
+        {/* 에러 알림 모달 */}
+        <AlertModal
+          open={errorModalOpen}
+          onClose={() => setErrorModalOpen(false)}
+          message={errorMessage}
+          title="오류 발생"
+        />
       </div>
     </div>
   );

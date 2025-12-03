@@ -165,12 +165,12 @@ const WeeklyMoodTrendAreaChart = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Weekly Mood Trend - Area Chart</h2>
+      <h2>주간 기분 트렌드 - 영역 차트</h2>
       <ResponsiveContainer width="100%" height={400}>
         <AreaChart data={Array.isArray(data) ? data : []}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="week" />
-          <YAxis label={{ value: "Percentage (%)", angle: -90, position: "insideLeft" }} />
+          <YAxis label={{ value: "비율 (%)", angle: -90, position: "insideLeft" }} />
           <Tooltip />
           {!hiddenItems.includes("happy") && (
             <Area
@@ -179,7 +179,7 @@ const WeeklyMoodTrendAreaChart = () => {
               stackId="1"
               stroke={colors.happy || DEFAULT_COLORS.happy}
               fill={colors.happy || DEFAULT_COLORS.happy}
-              name="Happy"
+              name="행복"
             />
           )}
           {!hiddenItems.includes("tired") && (
@@ -189,7 +189,7 @@ const WeeklyMoodTrendAreaChart = () => {
               stackId="1"
               stroke={colors.tired || DEFAULT_COLORS.tired}
               fill={colors.tired || DEFAULT_COLORS.tired}
-              name="Tired"
+              name="피곤"
             />
           )}
           {!hiddenItems.includes("stressed") && (
@@ -199,7 +199,7 @@ const WeeklyMoodTrendAreaChart = () => {
               stackId="1"
               stroke={colors.stressed || DEFAULT_COLORS.stressed}
               fill={colors.stressed || DEFAULT_COLORS.stressed}
-              name="Stressed"
+              name="스트레스"
             />
           )}
         </AreaChart>

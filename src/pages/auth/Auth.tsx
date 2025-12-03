@@ -99,8 +99,8 @@ const Auth = () => {
               onFocus={handleEmailFocus}
               onBlur={handleEmailBlur}
               value={authForm.email}
-              placeholder={isEmailFocused ? "Email" : ""}
-              label={authForm?.email ? "" : "Email"}
+              placeholder={isEmailFocused ? "이메일" : ""}
+              label={authForm?.email ? "" : "이메일"}
               required
             />
           </FormControl>
@@ -112,14 +112,14 @@ const Auth = () => {
               onFocus={handlePasswordFocus}
               onBlur={handlePasswordBlur}
               value={authForm.password}
-              placeholder={isPasswordFocused ? "Password" : ""}
-              label={authForm?.password ? "" : "Password"}
+              placeholder={isPasswordFocused ? "비밀번호" : ""}
+              label={authForm?.password ? "" : "비밀번호"}
               required
             />
           </FormControl>
           <div className={`${styles["login-button-box"]}`}>
             <Button type="submit" disabled={isLoading}>
-              Login
+              로그인
             </Button>
           </div>
         </Form>

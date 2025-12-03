@@ -148,7 +148,7 @@ const SnackBrandsBarChart = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Popular Snack Brands - Bar Chart</h2>
+      <h2>인기 스낵 브랜드 - 바 차트</h2>
       <ResponsiveContainer width="100%" height={400}>
         <BarChart
           data={
@@ -159,7 +159,7 @@ const SnackBrandsBarChart = () => {
           <XAxis dataKey="brand" />
           <YAxis />
           <Tooltip />
-          <Bar dataKey="value" name="Snack Brands" fill="#82ca9d">
+          <Bar dataKey="value" name="스낵 브랜드" fill="#82ca9d">
             {filteredData.map((item) => {
               const originalIndex = Array.isArray(data)
                 ? data.findIndex((d) => d.brand === item.brand)
